@@ -2,7 +2,8 @@
   "name": "challenge-weekend-2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.js",
+  "type": "module",
   "scripts": {
     "prepare": "husky install"
   },
