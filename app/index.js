@@ -74,9 +74,23 @@ const counterCellsAlive = (table, rowIndex, columnIndex) => {
   return counter;
 };
 
-const updateIsAlive = (cellsAlive) => {};
+const updateIsAlive = (cellsAlive) => {
+  if (cellsAlive > 3) {
+    return false;
+  }
+  if (cellsAlive < 2) {
+    return false;
+  }
+  if (cellsAlive === 2 || cellsAlive === 3) {
+    return true;
+  }
+};
 
-const updateIsDead = (cellsAlive) => {};
+const updateIsDead = (cellsAlive) => {
+  if (cellsAlive === 3) {
+    return true;
+  }
+};
 
 const updateTable = (table) => {
   for (let rowIndex = 0; rowIndex < table.length; rowIndex++) {
