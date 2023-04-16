@@ -90,10 +90,13 @@ const updateIsDead = (cellsAlive) => {
   if (cellsAlive === 3) {
     return true;
   }
+  return false;
 };
 
 const updateTable = (table) => {
+  const newTable = [];
   for (let rowIndex = 0; rowIndex < table.length; rowIndex++) {
+    const row = [];
     for (
       let columnIndex = 0;
       columnIndex < table[rowIndex].length;
@@ -102,15 +105,45 @@ const updateTable = (table) => {
       let cellsAlive = counterCellsAlive(table, rowIndex, columnIndex);
 
       if (table[rowIndex][columnIndex].isAlive) {
-        updateIsAlive(cellsAlive);
+        row.push({
+          positionY: rowIndex,
+          positionX: columnIndex,
+          isAlive: updateIsAlive(cellsAlive),
+        });
+      } else {
+        row.push({
+          positionY: rowIndex,
+          positionX: columnIndex,
+          isAlive: updateIsDead(cellsAlive),
+        });
       }
-      updateIsDead(cellsAlive);
     }
+    newTable.push(row);
   }
+
+  return newTable;
 };
 
-const table = createTable(3, 3);
+let table = createTable(15, 30);
 
-table[0][0].isAlive = true;
+table[0][4].isAlive = true;
+table[1][5].isAlive = true;
+table[2][5].isAlive = true;
+table[2][4].isAlive = true;
+table[2][3].isAlive = true;
 
-updateTable(table);
+table[2][24].isAlive = true;
+table[2][20].isAlive = true;
+table[2][21].isAlive = true;
+table[2][22].isAlive = true;
+table[3][20].isAlive = true;
+table[4][23].isAlive = true;
+table[4][24].isAlive = true;
+table[5][21].isAlive = true;
+table[5][22].isAlive = true;
+table[5][24].isAlive = true;
+table[6][20].isAlive = true;
+table[6][22].isAlive = true;
+table[6][24].isAlive = true;
+
+table = updateTable(table);
