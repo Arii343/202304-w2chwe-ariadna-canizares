@@ -6,8 +6,8 @@ const createTable = (totalRow, totalCol) => {
 
     for (let colIndex = 0; colIndex < totalCol; colIndex++) {
       row.push({
-        positionY: colIndex,
-        positionX: rowIndex,
+        positionY: rowIndex,
+        positionX: colIndex,
         isAlive: false,
       });
     }
@@ -16,4 +16,6 @@ const createTable = (totalRow, totalCol) => {
   return table;
 };
 
-console.table(createTable(3, 3));
+const table = createTable(3, 3);
+
+table[0][0].isAlive = true;
